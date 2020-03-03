@@ -36,7 +36,7 @@ namespace Fiszki.Controllers
                 .Where(fiszka => fiszka.CzasOstatniejOdpowiedzi == null || fiszka.CzasOstatniejOdpowiedzi > osiemDniOdDzisiaj).ToList();
         }
 
-        [HttpGet("weryfikacja")]
+        [HttpPost("weryfikacja")]
         public IActionResult SprawdzFiszke([FromBody]FiszkaDTO fiszka)
         {
             var fiszkaZBazy = RepozytoriumFiszek.BazaFiszek.Where(x => x.Pytanie == fiszka.Pytanie).FirstOrDefault();

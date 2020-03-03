@@ -26,6 +26,12 @@ namespace Fiszki
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Access-Control-Allow-Origin",
+                builder => builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +41,8 @@ namespace Fiszki
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("Access-Control-Allow-Origin");
 
             app.UseHttpsRedirection();
 
